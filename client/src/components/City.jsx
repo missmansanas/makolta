@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import HomepageCard from './HomepageCard'
 import { UserContext } from '../context/UserContext'
 import { Link } from "react-router-dom";
+import { useBleeps } from "@arwes/react-bleeps";
 
 const server = import.meta.env.VITE_SERVER
 
@@ -9,16 +10,21 @@ export default function City() {
   const [posts, setPosts] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isActive, setIsActive] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { userInfo } = useContext(UserContext);
 
+  const bleeps = useBleeps();
+
   useEffect(() => {
+    setLoading(true);
     fetch(`${server}/elements`)
       .then(response => {
         response.json()
           .then(elements => {
             setPosts(elements);
           })
-      })
+      });
+    setLoading(false);
   }, []);
 
   const getTitle = (id) => {
@@ -66,6 +72,7 @@ export default function City() {
   return (
     <div className='flex flex-row gap-8'>
       <div className='p-8 overflow-y-auto h-[calc(100vh-100px)] w-1/3 flex flex-col items-center'>
+        {loading && `Loading... ${bleeps.intro?.play()}`}
         {posts.length > 0 && posts.map(post => (
           <HomepageCard
             bgImage={post.cover}

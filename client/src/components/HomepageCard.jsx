@@ -1,6 +1,8 @@
 import React from 'react'
+import { useBleeps } from "@arwes/react-bleeps";
 
 const HomepageCard = ({ bgImage, title, isActive, index, setActiveIndex }) => {
+  const bleeps = useBleeps();
 
   return (
     <div
@@ -10,7 +12,7 @@ const HomepageCard = ({ bgImage, title, isActive, index, setActiveIndex }) => {
         backgroundSize: 'cover',
         backgroundPositionY: '50%',
       }}
-      onClick={() => setActiveIndex(index)}
+      onClick={() => setActiveIndex(index) + bleeps.click?.play()}
       >
       <div className='h-full bg-black/50 rounded'>
         <h1 className='font-mono tracking-widest font-semibold p-3'>

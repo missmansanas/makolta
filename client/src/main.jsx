@@ -14,11 +14,31 @@ import Locked from './components/Locked.jsx';
 import NewCharacter from './components/editors/NewCharacter.jsx';
 import EditCharacter from './components/editors/EditCharacter.jsx';
 import NewUpdate from './components/editors/NewUpdate.jsx';
+import { BleepsProvider } from "@arwes/react-bleeps";
 
-function Layout() {
+
+const Layout = () => {
   const [bgImage, setBgImage] = useState('https://images.pexels.com/photos/1202849/pexels-photo-1202849.jpeg')
 
   const location = useLocation().pathname;
+
+  const bleepsSettings = {
+    master: {
+      volume: 0.3
+    },
+    bleeps: {
+      intro: {
+        sources: [
+          { src: 'https://arwes.dev/assets/sounds/intro.mp3', type: 'audio/mpeg' }
+        ]
+      },
+      click: {
+        sources: [
+          { src: 'https://arwes.dev/assets/sounds/click.mp3', type: 'audio/mpeg' }
+        ]
+      }
+    }
+  }
 
   useEffect(() => {
      if (location === '/city') {
@@ -39,12 +59,14 @@ function Layout() {
         transitionDuration: '300ms'
       }}>
       <UserContextProvider>
+      <BleepsProvider {...bleepsSettings}>
 
       <main className='h-full bg-black/50 backdrop-blur-sm p-6 overflow-y-auto box-border'>
         <Nav />
         <Outlet/>
       </main>
       {/* <Footer/> */}
+      </BleepsProvider>
       </UserContextProvider>
     </div>
   )

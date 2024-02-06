@@ -1,8 +1,16 @@
 import { UserContext } from './context/UserContext'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
+import { useBleeps } from '@arwes/react-bleeps'
+import { Text } from "@arwes/react-text";
 
 function App() {
   const { userInfo } = useContext(UserContext);
+
+  const bleeps = useBleeps();
+
+  useEffect(() => {
+    bleeps.intro?.play()
+  }, [])
 
   return (
     <div className='grid grid-cols-2 gap-12 justify-center items-center h-[calc(100vh-98px)] box-border'>
@@ -13,9 +21,9 @@ function App() {
           <div className='text-5xl font-bold'>Superstate of Makolta</div>
         </h1>
 
-        <p className='font-light tracking-wider'>
+        <Text as="p" className='font-light tracking-wider'>
         Makoltaverse (working name) is a fictional literary universe, set mainly in the satirical, post-cyberpunk city of Makolta. The project will encompass several different stories in varying lengths, character casts, formats, tones and more.
-        </p>
+        </Text>
         <p className='font-light tracking-wide'>
         The first few stories are under development, but you can start exploring the universe today. {JSON.stringify(userInfo) !== "{}" && console.log(userInfo) + `You are currently signed in as ${userInfo}.`}
         </p>
