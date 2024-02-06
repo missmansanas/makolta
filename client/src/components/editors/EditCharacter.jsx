@@ -13,7 +13,7 @@ const EditCharacter = () => {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('http://localhost:4000/character/'+id)
+    fetch('https://makolta.vercel.app/character/'+id)
       .then(response => response.json()
       .then(charInfo => {
         setAlias(charInfo.alias);
@@ -35,7 +35,7 @@ const EditCharacter = () => {
     }
   
     try {
-      const response = await fetch('http://localhost:4000/edit-character', {
+      const response = await fetch('https://makolta.vercel.app/edit-character', {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {

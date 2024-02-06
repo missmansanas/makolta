@@ -22,7 +22,7 @@ const NewCharacter = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/new-character', {
+      const response = await fetch('https://makolta.vercel.app/new-character', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

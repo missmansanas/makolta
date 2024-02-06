@@ -10,7 +10,7 @@ export default function People() {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('http://localhost:4000/characters')
+    fetch('https://makolta.vercel.app/characters')
       .then(response => {
         response.json()
           .then(characters => {
