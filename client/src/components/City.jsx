@@ -11,7 +11,7 @@ export default function City() {
 
   useEffect(() => {
     fetch('https://makolta-server.vercel.app/elements', {
-      mode: 'cors'
+      mode: 'no-cors'
     })
       .then(response => {
         response.json()
