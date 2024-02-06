@@ -1,9 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 const path = require('path');
-require('dotenv').config({path:path.resolve(__dirname,  '../.env')})
+require('dotenv').config({})
 
 /* IMPORT MODELS */
 const Element = require('./models/Element');
