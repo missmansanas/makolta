@@ -15,7 +15,7 @@ app.listen(4000);
 app.use(cors(
   {
     credentials: true,
-    origin:'https://makoltaverse.vercel.app',
+    origin:'https://makolta.vercel.app',
     methods: ["POST", "GET", "PUT"]
   }
 ));
@@ -23,7 +23,7 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_ATLAS_URL)
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
   res.json('Ok')
 })
 
