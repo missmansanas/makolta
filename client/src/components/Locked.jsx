@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom';
 
+const server = import.meta.env.VITE_SERVER
+
 const Locked = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -10,7 +12,7 @@ const Locked = () => {
   const login = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('https://makolta-server.vercel.app/login', {
+    const response = await fetch(`${server}/login`, {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {

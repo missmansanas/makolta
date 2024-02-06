@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import { UserContext } from '../../context/UserContext'
 import { useParams } from "react-router-dom";
 
+const server = import.meta.env.VITE_SERVER
+
 const EditCharacter = () => {
   const { id } = useParams();
   const [alias, setAlias] = useState('');
@@ -13,7 +15,7 @@ const EditCharacter = () => {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('https://makolta-server.vercel.app/character/'+id)
+    fetch(`${server}/character/${id}`)
       .then(response => response.json()
       .then(charInfo => {
         setAlias(charInfo.alias);
@@ -35,7 +37,7 @@ const EditCharacter = () => {
     }
   
     try {
-      const response = await fetch('https://makolta-server.vercel.app/edit-character', {
+      const response = await fetch(`${server}/edit-character`, {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {

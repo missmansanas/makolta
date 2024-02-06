@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import NewsCard from './NewsCard';
 
+const server = import.meta.env.VITE_SERVER
+
 export default function News() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://makolta-server.vercel.app/updates')
+    fetch(`${server}/updates`)
       .then(response => {
         response.json()
           .then(updates => {

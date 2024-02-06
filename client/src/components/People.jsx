@@ -3,6 +3,8 @@ import CharacterCard from './CharacterCard';
 import { UserContext } from '../context/UserContext'
 import { Link } from "react-router-dom";
 
+const server = import.meta.env.VITE_SERVER
+
 export default function People() {
   const [posts, setPosts] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -10,7 +12,7 @@ export default function People() {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('https://makolta-server.vercel.app/characters')
+    fetch(`${server}/characters`)
       .then(response => {
         response.json()
           .then(characters => {

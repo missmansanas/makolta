@@ -2,6 +2,8 @@ import { useContext, useState } from 'react'
 import { Navigate } from "react-router-dom";
 import { UserContext } from '../../context/UserContext'
 
+const server = import.meta.env.VITE_SERVER
+
 const NewUpdate = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -16,7 +18,7 @@ const NewUpdate = () => {
     }
 
     try {
-      const response = await fetch('https://makolta-server.vercel.app/new-update', {
+      const response = await fetch(`${server}/new-update`, {
         method: 'POSt',
         body: JSON.stringify(data),
         headers: {

@@ -10,6 +10,8 @@ const NewCharacter = () => {
   const [content, setContent] = useState('');
   const { userInfo } = useContext(UserContext);
 
+  const server = import.meta.env.VITE_SERVER
+
   const createNewCharacter = async (event) => {
     event.preventDefault();
 
@@ -22,7 +24,7 @@ const NewCharacter = () => {
     }
 
     try {
-      const response = await fetch('https://makolta-server.vercel.app/new-character', {
+      const response = await fetch(`${server}/new-character`, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

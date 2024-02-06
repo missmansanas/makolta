@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import { UserContext } from '../../context/UserContext'
 import { useParams } from "react-router-dom";
 
+const server = import.meta.env.VITE_SERVER
+
 const EditElement = () => {
   const { id } = useParams();
   const [title, setTitle] = useState('');
@@ -13,7 +15,7 @@ const EditElement = () => {
 
 
   useEffect(() => {
-    fetch('https://makolta-server.vercel.app/element/'+id)
+    fetch(`${server}/element/${id}`)
     .then(response => response.json()
     .then(elInfo => {
       setTitle(elInfo.title);
@@ -35,7 +37,7 @@ const EditElement = () => {
     }
 
     try {
-      const response = await fetch('https://makolta-server.vercel.app/edit-element', {
+      const response = await fetch(`${server}/edit-element`, {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {

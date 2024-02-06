@@ -9,17 +9,29 @@ const Character = require('./models/Character');
 const Update = require('./models/Update');
 
 const app = express();
-// app.listen(4000, () => {
-//   console.log("Listening...")
-// });
+
+/* FOR LOCAL - COMMENT WHEN NOT IN USE */
+app.listen(4000, () => {
+  console.log("Listening...")
+});
 
 app.use(cors(
   {
     credentials: true,
-    origin: "https://makolta.vercel.app",
+    origin: "http://localhost:5173",
     methods: ["POST", "GET", "PUT"]
   }
 ));
+
+/* FOR VERCEL DEPOYMENT */
+// app.use(cors(
+//   {
+//     credentials: true,
+//     origin: "https://makolta.vercel.app",
+//     methods: ["POST", "GET", "PUT"]
+//   }
+// ));
+
 app.use(express.json());
 
 db.connectDatabase()
@@ -27,14 +39,6 @@ db.connectDatabase()
     console.error('Failed to start server: ', error);
   })
 
-// app.use(async (req, res) => {
-//   try {
-//     await mongoose.connect(`mongodb+srv://paolanocom:${process.env.MONGO_PW}@cluster0.ufeyccl.mongodb.net/portal?retryWrites=true&w=majority`)
-//     console.log("Successfully connected to db")
-//   } catch (error) {
-//     console.error("Error:" + error)
-//   }
-// })
 
 // app.get('/check-connection', async (req, res) => {
 //   try {
@@ -131,6 +135,26 @@ app.get('/character/:id', async (req, res) => {
   res.json(characterDoc);
 })
 
+/* EDIT CHARACTER ENDPOINT */
+app.put('/edit-character', async (req, res) => {
+  const { id, alias, name, avatar, summary, content } = req.body;
+  try {
+    const characterDoc = await Character.findById(id);
+    await characterDoc.updateOne({
+      alias,
+      name,
+      avatar,
+      summary,
+      content
+    });
+
+    res.json(characterDoc);
+
+  } catch (error) {
+    res.status(400).json(error);
+  }
+
+})
 
 /* NEW UPDATE ENDPOINT */
 app.post('/new-update', async (req, res) => {
