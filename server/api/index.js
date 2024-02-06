@@ -13,7 +13,13 @@ const Update = require('./models/Update');
 const app = express();
 app.listen(4000);
 
-app.use(cors({credentials: true, origin:'http://localhost:5173'}));
+app.use(cors(
+  {
+    credentials: true,
+    origin:'https://makolta.vercel.app',
+    methods: ["POST", "GET", "PUT"]
+  }
+));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_ATLAS_URL)
