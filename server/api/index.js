@@ -15,7 +15,7 @@ app.listen(4000);
 app.use(cors(
   {
     credentials: true,
-    origin:'https://makolta.vercel.app',
+    origin: ["https://makolta.vercel.app"],
     methods: ["POST", "GET", "PUT"]
   }
 ));
