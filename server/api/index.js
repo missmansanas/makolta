@@ -9,9 +9,9 @@ const Character = require('./models/Character');
 const Update = require('./models/Update');
 
 const app = express();
-app.listen(4000, () => {
-  console.log("Listening...")
-});
+// app.listen(4000, () => {
+//   console.log("Listening...")
+// });
 
 app.use(cors(
   {
@@ -22,7 +22,16 @@ app.use(cors(
 ));
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_ATLAS_URL)
+app.use(async (req, res) => {
+  try {
+    await mongoose.connect(process.env.MONGO_ATLAS_URL)
+    console.log("Successfully connected to db")
+  } catch (error) {
+    console.error("Error:" + error)
+  }
+}
+
+)
 
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'text/html')
