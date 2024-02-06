@@ -10,7 +10,9 @@ const Character = require('./models/Character');
 const Update = require('./models/Update');
 
 const app = express();
-app.listen(4000);
+app.listen(4000, () => {
+  console.log("Listening...")
+});
 
 app.use(cors(
   {
@@ -24,7 +26,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_ATLAS_URL)
 
 app.get('/', (req, res) => {
-  res.json('Ok')
+  res.send('Ok')
 })
 
 /* NEW ELEMENT ENDPOINT */
