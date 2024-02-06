@@ -16,7 +16,7 @@ const NewUpdate = () => {
     }
 
     try {
-      const response = await fetch('https://makolta.vercel.app/new-update', {
+      const response = await fetch('https://makolta-server.vercel.app/new-update', {
         method: 'POSt',
         body: JSON.stringify(data),
         headers: {

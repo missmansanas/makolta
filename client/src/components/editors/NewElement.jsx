@@ -21,7 +21,7 @@ const NewElement = () => {
     }
 
     try {
-      const response = await fetch('https://makolta.vercel.app/new-element', {
+      const response = await fetch('https://makolta-server.vercel.app/new-element', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

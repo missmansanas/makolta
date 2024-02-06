@@ -10,7 +10,7 @@ export default function City() {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('https://makolta.vercel.app/elements')
+    fetch('https://makolta-server.vercel.app/elements')
       .then(response => {
         response.json()
           .then(elements => {

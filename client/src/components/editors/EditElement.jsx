@@ -13,7 +13,7 @@ const EditElement = () => {
 
 
   useEffect(() => {
-    fetch('https://makolta.vercel.app/element/'+id)
+    fetch('https://makolta-server.vercel.app/element/'+id)
     .then(response => response.json()
     .then(elInfo => {
       setTitle(elInfo.title);
@@ -35,7 +35,7 @@ const EditElement = () => {
     }
 
     try {
-      const response = await fetch('https://makolta.vercel.app/edit-element', {
+      const response = await fetch('https://makolta-server.vercel.app/edit-element', {
         method: 'PUT',
         body: JSON.stringify(data),
         headers: {

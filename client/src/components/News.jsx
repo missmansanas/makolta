@@ -5,7 +5,7 @@ export default function News() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://makolta.vercel.app/updates')
+    fetch('https://makolta-server.vercel.app/updates')
       .then(response => {
         response.json()
           .then(updates => {
