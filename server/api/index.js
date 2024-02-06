@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
-require('dotenv').config({})
+require('dotenv').config()
 
 /* IMPORT MODELS */
 const Element = require('./models/Element');
