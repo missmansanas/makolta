@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { UserContextProvider } from './context/UserContext.jsx';
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, Outlet, useLocation } from "react-router-dom";
+import { BleepsProvider } from "@arwes/react-bleeps";
 import App from './App.jsx'
 import './index.css'
+import useMediaQuery from './hooks/useMediaQuery.jsx'
 import Nav from './components/Nav.jsx';
 import City from './components/City.jsx';
 import People from './components/People.jsx';
@@ -14,13 +16,14 @@ import Locked from './components/Locked.jsx';
 import NewCharacter from './components/editors/NewCharacter.jsx';
 import EditCharacter from './components/editors/EditCharacter.jsx';
 import NewUpdate from './components/editors/NewUpdate.jsx';
-import { BleepsProvider } from "@arwes/react-bleeps";
 
 
 const Layout = () => {
   const [bgImage, setBgImage] = useState('https://images.pexels.com/photos/1202849/pexels-photo-1202849.jpeg')
 
   const location = useLocation().pathname;
+
+  const isDesktop = useMediaQuery('(min-width: 960px)');
 
   const bleepsSettings = {
     master: {
@@ -58,16 +61,42 @@ const Layout = () => {
         backgroundAttachment: 'fixed',
         transitionDuration: '300ms'
       }}>
-      <UserContextProvider>
-      <BleepsProvider {...bleepsSettings}>
+      {isDesktop ? (
+        <UserContextProvider>
+        <BleepsProvider {...bleepsSettings}>
 
-      <main className='h-full bg-black/50 backdrop-blur-sm p-6 overflow-y-auto box-border'>
-        <Nav />
-        <Outlet/>
-      </main>
-      {/* <Footer/> */}
-      </BleepsProvider>
-      </UserContextProvider>
+        <main className='h-full bg-black/50 backdrop-blur-sm p-6 overflow-y-auto box-border'>
+          <Nav />
+          <Outlet/>
+        </main>
+        {/* <Footer/> */}
+        </BleepsProvider>
+        </UserContextProvider>
+      ) : (
+        <main className='h-full bg-black/50 backdrop-blur-md flex flex-col place-content-center p-8'>
+          <div className="w-8 h-8 rotate-45 border"></div>
+          <div className="w-8 h-8 rotate-45 border"></div>
+          <div className="w-8 h-8 rotate-45 border"></div>
+          <div className='border font-mono text-xl md:text-3xl mx-auto p-8 md:p-12 flex flex-col gap-5'>
+          <p>
+            Dearest Makoltazen,
+          </p>
+          <p>
+            The Makolta Web Portal is not optimized for mobile and tablet devices at this time. Please view from a desktop to enjoy Makoltaverse.
+          </p>
+          <p>
+            We're sorry for the inconvenience!
+          </p>
+          <p>
+            Signed, Makolta City-State Gov
+          </p>
+          </div>
+
+          <div className="w-8 h-8 rotate-45 border self-end"></div>
+          <div className="w-8 h-8 rotate-45 border self-end"></div>
+          <div className="w-8 h-8 rotate-45 border self-end"></div>
+        </main>
+      )}
     </div>
   )
 }

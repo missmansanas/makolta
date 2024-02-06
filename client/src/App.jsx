@@ -1,32 +1,25 @@
 import { UserContext } from './context/UserContext'
-import { useContext, useEffect } from 'react'
-import { useBleeps } from '@arwes/react-bleeps'
-import { Text } from "@arwes/react-text";
+import { useContext } from 'react'
 
 function App() {
   const { userInfo } = useContext(UserContext);
-
-  const bleeps = useBleeps();
-
-  useEffect(() => {
-    bleeps.intro?.play()
-  }, [])
 
   return (
     <div className='grid grid-cols-2 gap-12 justify-center items-center h-[calc(100vh-98px)] box-border'>
 
       <div className='pl-12 flex flex-col gap-y-3'>
         <h1 className="uppercase font-mono">
-          <div className='text-3xl font-light'>Welcome to The Web Portal of the </div>
-          <div className='text-5xl font-bold'>Superstate of Makolta</div>
+          <span className='text-2xl font-light'>Welcome to The Web Portal of the </span>
+          <span className='text-4xl font-bold'>Superstate of Makolta</span>
         </h1>
-
-        <Text as="p" className='font-light tracking-wider'>
-        Makoltaverse (working name) is a fictional literary universe, set mainly in the satirical, post-cyberpunk city of Makolta. The project will encompass several different stories in varying lengths, character casts, formats, tones and more.
-        </Text>
-        <p className='font-light tracking-wide'>
-        The first few stories are under development, but you can start exploring the universe today. {JSON.stringify(userInfo) !== "{}" && console.log(userInfo) + `You are currently signed in as ${userInfo}.`}
+    
+        <p className='font-light tracking-wider'>
+          Makoltaverse (working name) is a fictional literary universe, set mainly in the satirical, post-cyberpunk city of Makolta. The project will encompass several different stories in varying lengths, character casts, formats, tones and more.
         </p>
+        <p className='font-light tracking-wide'>
+          The first few stories are under development, but you can start exploring the universe today. {JSON.stringify(userInfo) !== "{}" && console.log(userInfo) + `You are currently signed in as ${userInfo}.`}
+        </p>
+
 
       </div>
 
