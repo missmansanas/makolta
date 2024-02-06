@@ -24,6 +24,10 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_ATLAS_URL)
 
+app.get('/', async (req, res) => {
+  res.json('Ok')
+})
+
 /* NEW ELEMENT ENDPOINT */
 app.post('/new-element', async (req, res) => {
   console.log(req.body)
