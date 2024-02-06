@@ -23,8 +23,6 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_ATLAS_URL)
 
-module.exports = app;
-
 app.get('/', (req, res) => {
   res.json('Ok')
 })
@@ -149,3 +147,6 @@ app.post('/login', async (req, res) => {
     res.status(400).json('Incorrect credentials')
   }
 })
+
+
+module.exports = app;
