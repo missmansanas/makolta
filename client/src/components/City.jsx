@@ -10,7 +10,9 @@ export default function City() {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch('https://makolta-server.vercel.app/elements')
+    fetch('https://makolta-server.vercel.app/elements', {
+      mode: 'cors'
+    })
       .then(response => {
         response.json()
           .then(elements => {
