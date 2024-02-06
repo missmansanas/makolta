@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 require('dotenv').config('../.env')
+const db = require('./connectDb');
 
 /* IMPORT MODELS */
 const Element = require('./models/Element');
@@ -22,14 +22,19 @@ app.use(cors(
 ));
 app.use(express.json());
 
-app.use(async (req, res) => {
-  try {
-    await mongoose.connect(`mongodb+srv://paolanocom:${process.env.MONGO_PW}@cluster0.ufeyccl.mongodb.net/portal?retryWrites=true&w=majority`)
-    console.log("Successfully connected to db")
-  } catch (error) {
-    console.error("Error:" + error)
-  }
-})
+db.connectDatabase()
+  .catch((error) => {
+    console.error('Failed to start server: ', error);
+  })
+
+// app.use(async (req, res) => {
+//   try {
+//     await mongoose.connect(`mongodb+srv://paolanocom:${process.env.MONGO_PW}@cluster0.ufeyccl.mongodb.net/portal?retryWrites=true&w=majority`)
+//     console.log("Successfully connected to db")
+//   } catch (error) {
+//     console.error("Error:" + error)
+//   }
+// })
 
 // app.get('/check-connection', async (req, res) => {
 //   try {
