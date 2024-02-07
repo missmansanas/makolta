@@ -16,9 +16,11 @@ export default function People() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await fetch(`${server}/characters`);
-      const data = response.json()
+      const data = await response.json()
       setPosts(data);
-      setLoading(false);
+      if (data) {
+        setLoading(false);
+      }
     }
     loadPosts();
   }, []);
