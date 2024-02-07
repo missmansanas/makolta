@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import NewsCard from './NewsCard';
-import { useBleeps } from "@arwes/react-bleeps";
 
 const server = import.meta.env.VITE_SERVER
 
 export default function News() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const bleeps = useBleeps();
 
   useEffect(async () => {
     setLoading(true);
@@ -30,7 +27,7 @@ export default function News() {
       </div>
       <div className="flex flex-col col-span-3 gap-5 h-[calc(100vh-200px)] box-border overflow-y-auto px-3">
         <h1 className='border-b font-mono uppercase tracking-wider'>Status Updates</h1>
-          {loading && `Loading... ${bleeps.intro?.play()}`}
+          {loading && `Loading...`}
           {posts.length > 0 ? (
             posts.map(post => (
               <NewsCard
