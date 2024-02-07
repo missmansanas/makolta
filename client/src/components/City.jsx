@@ -16,9 +16,11 @@ export default function City() {
     const loadPosts = async () => {
       setLoading(true);
       const response = await fetch(`${server}/elements`);
-      const data = response.json()
+      const data = await response.json()
       setPosts(data);
-      setLoading(false);
+      if (data) {
+        setLoading(false);
+      }
     }
     loadPosts();
   }, []);
