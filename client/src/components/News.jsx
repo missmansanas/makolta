@@ -5,19 +5,17 @@ const server = import.meta.env.VITE_SERVER
 
 export default function News() {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  useEffect(async () => {
-    setLoading(true);
-    await fetch(`${server}/updates`)
+  useEffect(() => {
+    fetch(`${server}/updates`)
       .then(response => {
         response.json()
           .then(updates => {
             setPosts(updates);
           })
       });
-      setLoading(false);
-  }, [])
+  }, []);
+
 
 
   return (
@@ -27,7 +25,6 @@ export default function News() {
       </div>
       <div className="flex flex-col col-span-3 gap-5 h-[calc(100vh-200px)] box-border overflow-y-auto px-3">
         <h1 className='border-b font-mono uppercase tracking-wider'>Status Updates</h1>
-          {loading && `Loading...`}
           {posts.length > 0 ? (
             posts.map(post => (
               <NewsCard
@@ -38,7 +35,7 @@ export default function News() {
               />
             ))
           ) : (
-            'No status updates found!'
+            'Waiting for status updates...'
           )}
 
       </div>

@@ -12,16 +12,15 @@ export default function People() {
   const [loading, setLoading] = useState(false);
   const { userInfo } = useContext(UserContext);
 
-  useEffect(async () => {
-    setLoading(true);
-    await fetch(`${server}/characters`)
-      .then(response => {
-        response.json()
-          .then(characters => {
-            setPosts(characters);
-          })
-      });
+  useEffect(() => {
+    const loadPosts = async () => {
+      setLoading(true);
+      const response = await fetch(`${server}/characters`);
+      const data = response.json()
+      setPosts(data);
       setLoading(false);
+    }
+    loadPosts();
   }, []);
 
   const getName = (id) => {

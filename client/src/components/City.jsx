@@ -12,16 +12,15 @@ export default function City() {
   const [loading, setLoading] = useState(false);
   const { userInfo } = useContext(UserContext);
 
-  useEffect(async () => {
-    setLoading(true);
-    await fetch(`${server}/elements`)
-      .then(response => {
-        response.json()
-          .then(elements => {
-            setPosts(elements);
-          })
-      });
-    setLoading(false);
+  useEffect(() => {
+    const loadPosts = async () => {
+      setLoading(true);
+      const response = await fetch(`${server}/elements`);
+      const data = response.json()
+      setPosts(data);
+      setLoading(false);
+    }
+    loadPosts();
   }, []);
 
   const getTitle = (id) => {
