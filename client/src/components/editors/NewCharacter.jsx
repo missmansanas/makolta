@@ -33,7 +33,8 @@ const NewCharacter = () => {
       });
 
       if (response.ok) {
-        alert('Character created!')
+        alert('Character created!');
+        return <Navigate to="/people" />
       } else {
         alert('There was a problem creating this character.')
       }

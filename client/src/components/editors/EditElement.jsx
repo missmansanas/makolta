@@ -46,7 +46,8 @@ const EditElement = () => {
       });
   
       if (response.ok) {
-        alert('Element updated!')
+        alert('Element updated!');
+        return <Navigate to="/city"/>
       } else {
         alert('There was an error updating the element.')
       }

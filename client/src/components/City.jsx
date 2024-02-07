@@ -15,9 +15,9 @@ export default function City() {
 
   const bleeps = useBleeps();
 
-  useEffect(() => {
+  useEffect(async () => {
     setLoading(true);
-    fetch(`${server}/elements`)
+    await fetch(`${server}/elements`)
       .then(response => {
         response.json()
           .then(elements => {

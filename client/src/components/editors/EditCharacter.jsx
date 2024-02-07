@@ -46,7 +46,8 @@ const EditCharacter = () => {
       });
 
       if (response.ok) {
-        alert('Character updated!')
+        alert('Character updated!');
+        return <Navigate to='/people'/>
       } else {
         alert('There was a problem updating this character.')
       }

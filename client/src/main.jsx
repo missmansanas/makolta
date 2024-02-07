@@ -16,6 +16,7 @@ import Locked from './components/Locked.jsx';
 import NewCharacter from './components/editors/NewCharacter.jsx';
 import EditCharacter from './components/editors/EditCharacter.jsx';
 import NewUpdate from './components/editors/NewUpdate.jsx';
+import ErrorBoundary from './ErrorBoundary.jsx';
 
 
 const Layout = () => {
@@ -104,6 +105,7 @@ const Layout = () => {
 const router = createBrowserRouter([
   {
     element: <Layout />,
+    errorElement: <ErrorBoundary/>,
     children: [
       {
         path: '/',

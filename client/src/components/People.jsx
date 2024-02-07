@@ -9,16 +9,19 @@ export default function People() {
   const [posts, setPosts] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isActive, setIsActive] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { userInfo } = useContext(UserContext);
 
-  useEffect(() => {
-    fetch(`${server}/characters`)
+  useEffect(async () => {
+    setLoading(true);
+    await fetch(`${server}/characters`)
       .then(response => {
         response.json()
           .then(characters => {
             setPosts(characters);
           })
-      })
+      });
+      setLoading(false);
   }, []);
 
   const getName = (id) => {
@@ -78,6 +81,7 @@ export default function People() {
   return (
     <div className='flex flex-row gap-8'>
       <div className='p-8 overflow-y-auto box-border h-[calc(100vh-100px)] w-1/3 flex flex-col items-center'>
+        {loading && `Loading... ${bleeps.intro?.play()}`}
         {posts.length > 0 && posts.map(post => (
             <CharacterCard
               avatar={post.avatar ? post.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}

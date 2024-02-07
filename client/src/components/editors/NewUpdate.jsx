@@ -28,6 +28,7 @@ const NewUpdate = () => {
 
       if (response.ok) {
         alert('Update posted!');
+        return <Navigate to="/updates" />
       } else {
         alert('There was a problem posting.');
       }

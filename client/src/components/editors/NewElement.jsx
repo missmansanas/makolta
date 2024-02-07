@@ -32,7 +32,8 @@ const NewElement = () => {
       });
   
       if (response.ok) {
-        alert('Element created!')
+        alert('Element created!');
+        return <Navigate to="/city" />
       } else {
         alert('There was an error creating the element.')
       }
