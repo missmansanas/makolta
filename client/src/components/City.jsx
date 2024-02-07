@@ -72,7 +72,7 @@ export default function City() {
   return (
     <div className='flex flex-row gap-8'>
       <div className='p-8 overflow-y-auto h-[calc(100vh-100px)] w-1/3 flex flex-col items-center'>
-        {loading && `Loading... ${bleeps.intro?.play()}`}
+        {loading && `Loading... ${() => bleeps.intro?.play()}`}
         {posts.length > 0 && posts.map(post => (
           <HomepageCard
             bgImage={post.cover}

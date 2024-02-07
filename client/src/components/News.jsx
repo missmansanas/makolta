@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import NewsCard from './NewsCard';
+import { useBleeps } from "@arwes/react-bleeps";
 
 const server = import.meta.env.VITE_SERVER
 
 export default function News() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const bleeps = useBleeps();
 
   useEffect(async () => {
     setLoading(true);

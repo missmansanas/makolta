@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import CharacterCard from './CharacterCard';
 import { UserContext } from '../context/UserContext'
 import { Link } from "react-router-dom";
+import { useBleeps } from "@arwes/react-bleeps";
 
 const server = import.meta.env.VITE_SERVER
 
@@ -11,6 +12,8 @@ export default function People() {
   const [isActive, setIsActive] = useState(false);
   const [loading, setLoading] = useState(false);
   const { userInfo } = useContext(UserContext);
+
+  const bleeps = useBleeps();
 
   useEffect(async () => {
     setLoading(true);
@@ -81,7 +84,7 @@ export default function People() {
   return (
     <div className='flex flex-row gap-8'>
       <div className='p-8 overflow-y-auto box-border h-[calc(100vh-100px)] w-1/3 flex flex-col items-center'>
-        {loading && `Loading... ${bleeps.intro?.play()}`}
+        {loading && `Loading... ${() => bleeps.intro?.play()}`}
         {posts.length > 0 && posts.map(post => (
             <CharacterCard
               avatar={post.avatar ? post.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}
