@@ -27,6 +27,7 @@ const EditCharacter = () => {
   }, [])
 
   const updateCharacter = async (event) => {
+    event.preventDefault();
     const data = {
       'id': id,
       'alias': alias,

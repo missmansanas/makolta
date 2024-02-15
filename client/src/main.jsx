@@ -75,27 +75,25 @@ const Layout = () => {
         </UserContextProvider>
       ) : (
         <main className='h-full bg-black/50 backdrop-blur-md flex flex-col place-content-center p-8 lg:hidden'>
-          <div className="w-8 h-8 rotate-45 border"></div>
-          <div className="w-8 h-8 rotate-45 border"></div>
-          <div className="w-8 h-8 rotate-45 border"></div>
-          <div className='border mx-auto p-8 md:p-12 flex flex-col gap-5'>
-          <p className='font-mono text-xl md:text-3xl'>
+          <div className="w-8 h-8 aspect-square rotate-45 border"></div>
+          <div className="w-8 h-8 aspect-square rotate-45 border"></div>
+          <div className='border mx-auto p-8 md:p-12 flex flex-col gap-5 text-lg'>
+          <p className='font-mono text-xl'>
             Dearest Makoltazen,
           </p>
-          <p className='text-lg md:text-xl'>
-            The Makolta Web Portal is not optimized for mobile and tablet devices at this time. Please view from a desktop to enjoy Makoltaverse.
+          <p>
+            The Makolta Web Portal is not optimized for mobile and tablet devices at this time. Please view from a desktop to enjoy Makoltaverse and check back again soon.
           </p>
-          <p className='text-lg md:text-xl'>
+          <p>
             We're sorry for the inconvenience!
           </p>
-          <p className='text-lg md:text-xl'>
+          <p>
             Signed, Makolta City-State Gov
           </p>
           </div>
 
-          <div className="w-8 h-8 rotate-45 border self-end"></div>
-          <div className="w-8 h-8 rotate-45 border self-end"></div>
-          <div className="w-8 h-8 rotate-45 border self-end"></div>
+          <div className="w-8 h-8 aspect-square rotate-45 border self-end"></div>
+          <div className="w-8 h-8 aspect-square rotate-45 border self-end"></div>
         </main>
       )}
     </div>
