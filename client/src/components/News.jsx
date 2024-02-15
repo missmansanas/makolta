@@ -42,7 +42,7 @@ export default function News() {
       <div className="">
         <h1 className='border-b font-mono uppercase tracking-wider'>Extras</h1>
         <p className='tracking-wide font-mono'>Listen to a Makoltaverse-inspired playlist on Spotify!</p>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0z4JDNyptstDVCpbWrHiy6?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe style={{"borderRadius": "12px"}} src="https://open.spotify.com/embed/playlist/0z4JDNyptstDVCpbWrHiy6?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
 
     </div>
