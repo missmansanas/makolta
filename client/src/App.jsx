@@ -9,8 +9,8 @@ function App() {
 
       <div className='pl-12 flex flex-col gap-y-3'>
         <h1 className="uppercase font-mono">
-          <span className='text-2xl font-light'>Welcome to The Web Portal of the </span>
-          <span className='text-4xl font-bold'>Superstate of Makolta</span>
+          <div className='text-2xl font-light'>Welcome to The Web Portal of the </div>
+          <div className='text-4xl font-bold'>Superstate of Makolta</div>
         </h1>
     
         <p className='font-light tracking-wider'>
