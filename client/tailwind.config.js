@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'baybayin': ['Hiraya Baybayin'],
+        'techno': ['Neuropol']
+      }
+    },
   },
   plugins: [],
 }

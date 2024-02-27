@@ -1,18 +1,60 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink } from "react-router-dom";
 import { UserContext } from '../context/UserContext'
 import { useBleeps } from "@arwes/react-bleeps";
+import { Lock, Unlock, Zap, Menu } from "react-feather";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const Nav = () => {
   const { userInfo } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
+
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
   const bleeps = useBleeps();
   
   return (
-    <div className='flex flex-row items-center justify-between font-mono'>
-      <p className='text-3xl pr-3'>✨</p>
-      <div className='border border-white/30 w-full h-0'></div>
-      <div className='flex min-w-max gap-9 box-border text-white justify-evenly uppercase bg-white/30 backdrop-blur-xs px-9'>
+    <div className='flex flex-row items-center gap-2 md:gap-3 font-mono'>
+      <p className=''><Zap strokeWidth={1}/></p>
+      <div className='md:border md:border-white/30 md:w-full md:h-0'></div>
+      {isMobile ? (
+
+        <div className='flex flex-row flex-wrap gap-3 text-xs z-50 min-w-max box-border text-white uppercase justify-between items-center'>
+          <NavLink
+            to='/'
+            className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
+            onClick={() => bleeps.click?.play()}
+            >
+            01. Home
+          </NavLink>
+          <NavLink
+            to='/city'
+            className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
+            onClick={() => bleeps.click?.play()}
+            >
+            02. City
+          </NavLink>
+          <NavLink
+            to='/people'
+            className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
+            onClick={() => bleeps.click?.play()}
+            >
+            03. People
+          </NavLink>
+          <NavLink
+            to='/news'
+            className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
+            onClick={() => bleeps.click?.play()}>
+            04. News
+          </NavLink>
+          <NavLink to='/locked' className='py-3' onClick={() => bleeps.click?.play()}>
+            {JSON.stringify(userInfo) !== "{}" ? <Unlock/> : <Lock strokeWidth={1.5} size={20}/> }
+          </NavLink>
+        </div>
+
+      ) : (
+
+      <div className='flex min-w-max gap-9 box-border text-white justify-evenly uppercase px-9'>
         <NavLink
           to='/'
           className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
@@ -41,9 +83,10 @@ const Nav = () => {
           04. News
         </NavLink>
         <NavLink to='/locked' className='py-3' onClick={() => bleeps.click?.play()}>
-          {JSON.stringify(userInfo) !== "{}" ? '🔓' : '🔒'}
+          {JSON.stringify(userInfo) !== "{}" ? <Unlock/> : <Lock strokeWidth={1.5} size={20}/> }
         </NavLink>
       </div>
+      )}
 
     </div>
   )

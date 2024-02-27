@@ -62,7 +62,7 @@ const Layout = () => {
         backgroundAttachment: 'fixed',
         transitionDuration: '300ms'
       }}>
-      {isDesktop ? (
+      {/* {isDesktop ? ( */}
         <UserContextProvider>
         <BleepsProvider {...bleepsSettings}>
 
@@ -73,7 +73,7 @@ const Layout = () => {
         {/* <Footer/> */}
         </BleepsProvider>
         </UserContextProvider>
-      ) : (
+      {/* ) : (
         <main className='h-full bg-black/50 backdrop-blur-md flex flex-col place-content-center p-8 lg:hidden'>
           <div className="w-8 h-8 aspect-square rotate-45 border"></div>
           <div className="w-8 h-8 aspect-square rotate-45 border"></div>
@@ -95,7 +95,8 @@ const Layout = () => {
           <div className="w-8 h-8 aspect-square rotate-45 border self-end"></div>
           <div className="w-8 h-8 aspect-square rotate-45 border self-end"></div>
         </main>
-      )}
+      )} */}
+      
     </div>
   )
 }

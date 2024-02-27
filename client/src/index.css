@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts */
+@font-face {
+  font-family: 'Hiraya Baybayin';
+  src: url('./assets/fonts/Hiraya_Baybayin.ttf');
+}
+
+@font-face {
+  font-family: 'Good Timing';
+  src: url('./assets/fonts/good_timing_bd.otf');
+}
+
+@font-face {
+  font-family: 'Neuropol';
+  src: url('./assets/fonts/neuropol_x.otf');
+}
+
+/* Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -21,3 +39,4 @@
   box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
+
