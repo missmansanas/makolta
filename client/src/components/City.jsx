@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import HomepageCard from './HomepageCard'
+import ElementCard from './ElementCard'
 import { UserContext } from '../context/UserContext'
 import { Link } from "react-router-dom";
 
@@ -68,11 +68,25 @@ export default function City() {
   }
 
   return (
-    <div className='flex flex-row gap-8'>
-      <div className='p-8 overflow-y-auto h-[calc(100vh-100px)] w-1/3 flex flex-col items-center'>
-        {loading && `Loading...`}
+    <>
+    {loading && (
+      <div className='border-y py-3 w-full text-center my-16'>
+        <h1 className='font-techno text-3xl'>
+          Loading...
+        </h1>
+        <h1 className='font-baybayin text-xl tracking-widest'>
+          Abangan
+        </h1>
+      </div>
+    )}
+
+    <div className='flex flex-col lg:flex-row gap-8 my-12'>
+
+      <div className='box-border h-max p-8 lg:p-12 gap-y-8 md:gap-0 border flex 
+      flex-row overflow-x-auto
+      lg:flex-col lg:overflow-x-hidden lg:overflow-y-auto '>
         {posts.length > 0 && posts.map(post => (
-          <HomepageCard
+          <ElementCard
             bgImage={post.cover}
             title={post.title}
             key={post.title}
@@ -83,15 +97,16 @@ export default function City() {
         ))}
 
         </div>
-        <div className={`flex flex-col w-2/3 mt-12 border min-h-96 ${!activeIndex && 'hidden'} duration-300`}>
-          <h1 className='text-3xl border-b py-3 px-6 font-mono tracking-widest'>{getTitle(activeIndex)} {editButton(activeIndex)}</h1>
-          <div className='px-6 overflow-y-auto max-h-[calc(100vh-250px)] box-border'>
-            <p className='italic py-6 tracking-wider font-light'>{getSummary(activeIndex)}</p>
-            <p className=''>{getContent(activeIndex)}</p>
+        <div className={`flex flex-col lg:w-3/4 border h-max ${!activeIndex && 'hidden'} duration-300`}>
+          <h1 className='text-3xl border-b py-3 px-6 font-techno break-word tracking-widest'>{getTitle(activeIndex)} {editButton(activeIndex)}</h1>
+          <div className='p-6 overflow-y-auto max-h-[calc(100vh-250px)] box-border'>
+            <p className='italic text-xl pb-6 tracking-wider font-light'>{getSummary(activeIndex)}</p>
+            <p className='text-xl tracking-wide whitespace-pre-line'>{getContent(activeIndex)}</p>
           </div>
 
         </div>
       </div>
+      </>
 
   )
 }
