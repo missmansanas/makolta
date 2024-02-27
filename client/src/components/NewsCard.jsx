@@ -2,7 +2,7 @@ import React from 'react'
 
 const NewsCard = ({ title, content, timestamp }) => {
   return (
-    <div className='border rounded rounded-md p-3'>
+    <div className='rounded rounded-md p-3 bg-black/70 backdrop-blur-xs'>
     <h6 className='text-xs font-light tracking-widest'>Makolta City-State Gov posted {timestamp && 'on ' + timestamp}:</h6>
     <p className='text-xl tracking-wide font-mono py-3'>
       {title}
