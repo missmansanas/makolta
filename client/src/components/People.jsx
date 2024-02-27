@@ -67,22 +67,36 @@ export default function People() {
     }
   }
 
-  // const getAvatar = (id) => {
-  //   if (id) {
-  //     const activeElement = posts.find(el => {
-  //       return el._id === id;
-  //     })
+  const getAvatar = (id) => {
+    if (id) {
+      const activeElement = posts.find(el => {
+        return el._id === id;
+      })
   
-  //     return `${activeElement.avatar ? activeElement.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}`;
-  //   } else {
-  //     return;
-  //   }
-  // }
+      return `${activeElement.avatar ? activeElement.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}`;
+    } else {
+      return;
+    }
+  }
 
   return (
-    <div className='flex flex-row gap-8'>
-      <div className='p-8 overflow-y-auto box-border h-[calc(100vh-100px)] w-1/3 flex flex-col items-center'>
-        {loading && `Loading...`}
+    <>
+    {loading && (
+      <div className='border-y py-3 w-full text-center my-16'>
+        <h1 className='font-techno text-3xl'>
+          Loading...
+        </h1>
+        <h1 className='font-baybayin text-xl tracking-widest'>
+          Abangan
+        </h1>
+      </div>
+    )}
+
+    <div className='flex flex-col lg:flex-row gap-8 my-12'>
+
+      <div className='box-border h-max p-8 lg:p-12 gap-y-8 md:gap-0 border flex 
+      flex-row overflow-x-auto
+      lg:flex-col lg:overflow-x-hidden lg:overflow-y-auto '>
         {posts.length > 0 && posts.map(post => (
             <CharacterCard
               avatar={post.avatar ? post.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}
@@ -95,36 +109,20 @@ export default function People() {
             />
           ))}
 
-          {/* <CharacterCard
-          name="Philo"
-          alias="Alias"
-          avatar='https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'
-        />
-
-          <CharacterCard
-          name="Philo"
-          alias="Alias"
-          avatar='https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'
-        />
-
-          <CharacterCard
-          name="Philo"
-          alias="Alias"
-          avatar='https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'
-        /> */}
 
         </div>
-        <div className={`flex flex-col w-2/3 mt-12 border min-h-96 ${!activeIndex && 'hidden'} duration-300`}>
-          <h1 className='text-3xl px-6 py-3 border-b font-mono tracking-widest'>{getName(activeIndex)} {editButton(activeIndex)}</h1>
-          <div className='overflow-y-auto px-6 box-border max-h-[calc(100vh-250px)]'>
-            <p className='italic py-6 tracking-wider font-light'>{getSummary(activeIndex)}</p>
-            <p className=''>{getContent(activeIndex)}</p>
+        <div className={`flex flex-col lg:w-3/4 border h-max ${!activeIndex && 'hidden'} duration-300`}>
+          <h1 className='text-3xl px-6 py-3 border-b font-techno tracking-widest'>{getName(activeIndex)} {editButton(activeIndex)}</h1>
+          <div className='p-6 overflow-y-auto box-border max-h-[calc(100vh-250px)]'>
+            <p className='italic text-xl pb-6 tracking-wider font-light'>{getSummary(activeIndex)}</p>
+            <img src={getAvatar(activeIndex)} className='w-36 h-36 md:w-52 md:h-52 lg:w-96 lg:h-96 aspect-square object-cover rounded-full float-right border-b border-r p-2 lg:ml-6' />
+            <p className='text-xl tracking-wide whitespace-pre-line'>{getContent(activeIndex)}</p>
           </div>
 
         </div>
 
 
     </div>
-
+    </>
   )
 }
