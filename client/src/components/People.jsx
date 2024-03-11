@@ -82,45 +82,60 @@ export default function People() {
 
   return (
     <>
-    {loading && (
-      <div className='border-y py-3 w-full text-center my-16'>
+    <Nav/>
+    <div className='flex flex-col gap-8 my-12'>
+
+    <div className="pl-4 relative">
+      <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>
+      <h1 className="uppercase font-techno text-xl">Characters</h1>
+    </div>
+
+    {loading ? (
+      <div className='border-b py-3 w-full text-center my-16'>
         <h1 className='font-techno text-3xl'>
-          Loading...
+          Please wait
         </h1>
         <h1 className='font-baybayin text-xl tracking-widest'>
           Abangan
         </h1>
       </div>
-    )}
-    <Nav/>
-    <div className='flex flex-col lg:flex-row gap-8 my-12'>
-
-      <div className='box-border h-max p-8 lg:p-12 gap-y-8 md:gap-0 border flex 
-      flex-row overflow-x-auto
-      lg:flex-col lg:overflow-x-hidden lg:overflow-y-auto '>
-        {posts.length > 0 && posts.map(post => (
-            <CharacterCard
-              avatar={post.avatar ? post.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}
-              alias={post.alias}
-              name={post.name}
-              key={post.alias}
-              index={post._id}
-              isActive={activeIndex === post._id}
-              setActiveIndex={setActiveIndex}
-            />
-          ))}
+    ) : (
+      <>
+        <div className='box-border h-max gap-8 flex flex-row overflow-x-auto sticky top-[0.1%]'>
+          {posts.length > 0 && posts.map(post => (
+              <CharacterCard
+                avatar={post.avatar ? post.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}
+                alias={post.alias}
+                name={post.name}
+                key={post.alias}
+                index={post._id}
+                isActive={activeIndex === post._id}
+                setActiveIndex={setActiveIndex}
+              />
+            ))}
 
 
-        </div>
-        <div className={`flex flex-col lg:w-3/4 border h-max ${!activeIndex && 'hidden'} duration-300`}>
-          <h1 className='text-3xl px-6 py-3 border-b font-techno tracking-widest'>{getName(activeIndex)} {editButton(activeIndex)}</h1>
-          <div className='p-6 overflow-y-auto box-border max-h-[calc(100vh-250px)]'>
-            <p className='italic text-xl pb-6 tracking-wider font-light'>{getSummary(activeIndex)}</p>
-            <img src={getAvatar(activeIndex)} className='w-36 h-36 md:w-52 md:h-52 lg:w-96 lg:h-96 aspect-square object-cover rounded-full float-right border-b border-r p-2 lg:ml-6' />
-            <p className='text-xl tracking-wide whitespace-pre-line'>{getContent(activeIndex)}</p>
+          </div>
+          <div className="p-0.5 bg-blue-900/30 shadow-all shadow-pink-500/20 lg:w-3/4 lg:mx-auto">
+
+          <div className={`hexagon-xl px-6 bg-black/70 border border-white/50 h-max ${!activeIndex && 'hidden'} duration-300`}>
+
+          <div className='relative w-full'>
+              <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>
+            <h1 className='text-2xl px-6 bo py-3 font-techno'>{getName(activeIndex)} {editButton(activeIndex)}</h1>
           </div>
 
-        </div>
+            <div className='p-6 overflow-y-auto box-border max-h-[calc(100vh-400px)]'>
+              <p className='italic bg-blue-400/10 font-mono text-xl p-6 tracking-wider'>{getSummary(activeIndex)}</p>
+              <img src={getAvatar(activeIndex)} className='w-36 h-36 md:w-1/3 md:h-1/3 aspect-square object-cover rounded-full float-right border-b-2 border-blue-500/50 p-4 ml-3 -mr-4' />
+              <p className='text-xl tracking-wide whitespace-pre-line pt-6 pb-12'>{getContent(activeIndex)}</p>
+            </div>
+
+          </div>
+          </div>
+
+      </>
+    )}
 
 
     </div>

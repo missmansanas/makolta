@@ -70,8 +70,14 @@ export default function City() {
 
   return (
     <>
-    {loading && (
-      <div className='border-y py-3 w-full text-center my-16'>
+    <Nav/>
+    <div className='flex flex-col gap-8 my-12'>
+    <div className="pl-4 relative">
+      <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>
+      <h1 className="uppercase font-techno text-xl">World-building Elements</h1>
+    </div>
+    {loading ? (
+      <div className='border-b py-3 w-full text-center my-16'>
         <h1 className='font-techno text-3xl'>
           Please wait
         </h1>
@@ -79,41 +85,39 @@ export default function City() {
           Abangan
         </h1>
       </div>
-    )}
-    <Nav/>
-    <div className='flex flex-col gap-8 my-12'>
-    <div className="pl-4 relative">
-      <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>
-      <h1 className="uppercase font-techno text-xl">World-building Elements</h1>
-    </div>
+    ) : (
+      <>
+        <div className='box-border h-max gap-4 flex flex-row overflow-x-auto sticky top-[0.1%]'>
+          {posts.length > 0 && posts.map(post => (
+            <ElementCard
+              bgImage={post.cover}
+              title={post.title}
+              key={post.title}
+              index={post._id}
+              isActive={activeIndex === post._id}
+              setActiveIndex={setActiveIndex}
+            />
+          ))}
 
-      <div className='box-border h-max gap-4 flex flex-row overflow-x-auto sticky top-[0.1%]'>
-        {posts.length > 0 && posts.map(post => (
-          <ElementCard
-            bgImage={post.cover}
-            title={post.title}
-            key={post.title}
-            index={post._id}
-            isActive={activeIndex === post._id}
-            setActiveIndex={setActiveIndex}
-          />
-        ))}
-
-        </div>
-        <div className="p-0.5 bg-blue-900/30 shadow-all shadow-pink-500/20 lg:w-3/4 mx-auto">
-
-        <div className={`hexagon-xl px-6 flex flex-col bg-black/70 border border-white/50 h-max ${!activeIndex && 'hidden'} duration-300`}>
-        <div className='relative w-full'>
-          <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>
-          <h1 className='text-3xl border-b py-3 px-6 font-techno break-word tracking-widest'>{getTitle(activeIndex)} {editButton(activeIndex)}</h1>
-        </div>
-          <div className='p-6 pb-12 overflow-y-auto max-h-[calc(100vh-250px)] box-border'>
-            <p className='italic text-xl pb-6 tracking-wider font-light'>{getSummary(activeIndex)}</p>
-            <p className='text-xl tracking-wide whitespace-pre-line'>{getContent(activeIndex)}</p>
           </div>
+          <div className="p-0.5 bg-blue-900/30 shadow-all shadow-pink-500/20 lg:w-3/4 lg:mx-auto">
 
-        </div>
-        </div>
+          <div className={`hexagon-xl px-6 bg-black/70 border border-white/50 h-max ${!activeIndex && 'hidden'} duration-300`}>
+
+            <div className='relative w-full'>
+              <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>
+              <h1 className='text-2xl border-b py-3 px-6 font-techno break-word'>{getTitle(activeIndex)} {editButton(activeIndex)} in Makolta</h1>
+            </div>
+
+            <div className='p-6 pb-12 overflow-y-auto max-h-[calc(100vh-400px)] box-border flex flex-col gap-6'>
+              <p className='italic bg-blue-400/10 font-mono text-xl p-6 tracking-wider'>{getSummary(activeIndex)}</p>
+              <p className='text-xl tracking-wide whitespace-pre-line'>{getContent(activeIndex)}</p>
+            </div>
+
+          </div>
+          </div>
+      </>      
+    )}
       </div>
       </>
 

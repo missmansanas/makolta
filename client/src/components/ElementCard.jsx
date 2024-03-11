@@ -6,7 +6,7 @@ const ElementCard = ({ bgImage, title, isActive, index, setActiveIndex }) => {
 
   return (
     <div
-      className={`relative aspect-video max-w-52 h-20 md:h-28 ${isActive && 'z-50'} duration-300`}
+      className={`relative aspect-video max-w-52 h-20 md:h-28 duration-300`}
       style={{
         backgroundImage: `url(${bgImage && bgImage})`,
         backgroundSize: 'cover',
@@ -15,9 +15,9 @@ const ElementCard = ({ bgImage, title, isActive, index, setActiveIndex }) => {
       onClick={() => setActiveIndex(index) + bleeps.click?.play()}
       >
       <div className='h-full bg-black/50'>
-        <h1 className='font-techno tracking-widest p-3 break-words'>
+        <h6 className='font-techno tracking-widest p-3 break-words'>
           {title}
-        </h1>
+        </h6>
       </div>
     </div>
   )
