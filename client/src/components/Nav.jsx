@@ -2,12 +2,13 @@ import React, { useContext, useState } from 'react'
 import { NavLink } from "react-router-dom";
 import { UserContext } from '../context/UserContext'
 import { useBleeps } from "@arwes/react-bleeps";
-import { Lock, Unlock, Zap, Menu } from "react-feather";
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import useMediaQuery from "../hooks/useMediaQuery";
 
 const Nav = () => {
   const { userInfo } = useContext(UserContext);
-  const [open, setOpen] = useState(false);
 
   const isMobile = useMediaQuery('(max-width: 640px)');
 
@@ -15,7 +16,7 @@ const Nav = () => {
   
   return (
     <div className='flex flex-row items-center gap-2 md:gap-3 font-mono'>
-      <p className=''><Zap strokeWidth={1}/></p>
+      <p className=''><StarBorderOutlinedIcon/></p>
       <div className='md:border md:border-white/30 md:w-full md:h-0'></div>
       {isMobile ? (
 
@@ -48,7 +49,7 @@ const Nav = () => {
             04. News
           </NavLink>
           <NavLink to='/locked' className='py-3' onClick={() => bleeps.click?.play()}>
-            {JSON.stringify(userInfo) !== "{}" ? <Unlock/> : <Lock strokeWidth={1.5} size={20}/> }
+            {JSON.stringify(userInfo) !== "{}" ? <LockOpenOutlinedIcon/> : <LockOutlinedIcon/> }
           </NavLink>
         </div>
 
@@ -83,7 +84,7 @@ const Nav = () => {
           04. News
         </NavLink>
         <NavLink to='/locked' className='py-3' onClick={() => bleeps.click?.play()}>
-          {JSON.stringify(userInfo) !== "{}" ? <Unlock/> : <Lock strokeWidth={1.5} size={20}/> }
+          {JSON.stringify(userInfo) !== "{}" ? <LockOpenOutlinedIcon/> : <LockOutlinedIcon/> }
         </NavLink>
       </div>
       )}

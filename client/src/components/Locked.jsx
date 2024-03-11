@@ -1,14 +1,28 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom';
 import Nav from './Nav';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import Slide from '@mui/material/Slide';
 
 const server = import.meta.env.VITE_SERVER
 
 const Locked = () => {
+  const SlideTransition = (props) => {
+    return <Slide {...props} direction="down" />;
+  }
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { setUserInfo, userInfo } = useContext(UserContext);
+  const [toast, setToast] = useState({
+    open: false,
+    message: '',
+    severity: '',
+    Transition: SlideTransition,
+  });
+  const { open, message, severity } = toast;
 
   const login = async (event) => {
     event.preventDefault();
@@ -23,20 +37,39 @@ const Locked = () => {
     });
 
     if (response.status === 200) {
-      alert('Successfully logged in');
+      setToast({...toast, open: true, message: 'Successfully logged in', severity: 'success'});
       response.json().then(user => {
         console.log(user);
         setUserInfo(user);
       })
     } else {
-      alert('Please try again');
+      setToast({...toast, open: true, message: 'Incorrect credentials', severity: 'error'});
     }
   }
+
+  const handleClose = () => {
+    setToast({...toast, open: false});
+  };
 
   return (
     <>
     <Nav/>
-
+    <Snackbar
+        anchorOrigin={{vertical: "top", horizontal: "center"}}
+        open={open}
+        autoHideDuration={1500}
+        onClose={handleClose}
+        TransitionComponent={toast.Transition}
+      >
+        <Alert
+          onClose={handleClose}
+          severity={severity}
+          sx={{ width: '100%' }}
+          
+        >
+          {message}
+        </Alert>
+      </Snackbar>
     <div className='flex flex-col mx-auto place-content-center place-items-center h-max mt-12'>
       <div className="flex flex-col justify-center gap-8 box-border md:w-[700px] place-content-center items-center mx-auto h-max mt-12">
         <div className="bg-pink-900/50 p-0.5 shadow-all shadow-pink-500/20">
@@ -49,7 +82,7 @@ const Locked = () => {
             <p className='text-3xl font-techno text-center'>Authorization Required</p>
             <p className='text-xl'>You are attempting to access a restricted section. Please sign in to verify your security clearance level.</p>
           
-            <form className='flex flex-col p-5 gap-5 w-96' onSubmit={login}>
+            <form className='flex flex-col p-5 gap-5 md:w-96' onSubmit={login}>
               <input type="text" name="username" placeholder='username' className='text-center font-mono bg-transparent border p-2'
               value={username}
               onChange={event => setUsername(event.target.value)}
