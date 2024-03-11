@@ -24,7 +24,7 @@ function App() {
 
             <div className='flex flex-col gap-y-5 flex flex-col items-center text-center w-[95%] mx-auto p-3'>
               <h1 className="font-baybayin text-white/30 text-xl md:text-3xl lg:text-4xl tracking-widest">Ang Portal ng Ahensya</h1>
-              <h1 className="border-b-2 border-pink-500/20 pb-4 uppercase font-techno text-xl md:text-4xl">Welcome to the Agency Portal</h1>
+                <h1 className="border-b-2 border-pink-500/20 pb-4 uppercase font-techno text-xl md:text-4xl">Welcome to the Agency Portal</h1>
           
               <p className='tracking-wider md:text-justify'>
                 The contents of this portal are confidential, privileged and intended only for the person(s) to which it is entrusted by the Agency. Any review, retransmission, dissemination or other use of this material is strictly prohibited and punishable to varying degrees. By continuing to access the portal, you are subject to the Agency by-laws and applicable penalties.

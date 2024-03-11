@@ -6,7 +6,7 @@ const ElementCard = ({ bgImage, title, isActive, index, setActiveIndex }) => {
 
   return (
     <div
-      className={`relative aspect-video h-20 md:h-28 rounded shadow shadow-xl ${isActive ? 'z-50' : '-rotate-12'} duration-300`}
+      className={`relative aspect-video max-w-52 h-20 md:h-28 ${isActive && 'z-50'} duration-300`}
       style={{
         backgroundImage: `url(${bgImage && bgImage})`,
         backgroundSize: 'cover',
@@ -14,7 +14,7 @@ const ElementCard = ({ bgImage, title, isActive, index, setActiveIndex }) => {
       }}
       onClick={() => setActiveIndex(index) + bleeps.click?.play()}
       >
-      <div className='h-full bg-black/50 rounded'>
+      <div className='h-full bg-black/50'>
         <h1 className='font-techno tracking-widest p-3 break-words'>
           {title}
         </h1>
