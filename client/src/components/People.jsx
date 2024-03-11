@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import CharacterCard from './CharacterCard';
 import { UserContext } from '../context/UserContext'
 import { Link } from "react-router-dom";
+import Nav from './Nav';
 
 const server = import.meta.env.VITE_SERVER
 
@@ -91,7 +92,7 @@ export default function People() {
         </h1>
       </div>
     )}
-
+    <Nav/>
     <div className='flex flex-col lg:flex-row gap-8 my-12'>
 
       <div className='box-border h-max p-8 lg:p-12 gap-y-8 md:gap-0 border flex 

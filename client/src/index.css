@@ -40,3 +40,18 @@
   border-radius: 10px;
 }
 
+.bg-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, #ffffff11 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff11 1px, transparent 1px),
+    radial-gradient(circle, #ffffff33 1px, rgba(0, 0, 0, 0) 1px);
+}
+
+.hexagon-xl {
+  clip-path: polygon(0 0, 95% 0, 100% 10%, 100% 100%, 5% 100%, 0 90%);
+}
+
+.hexagon-btn {
+  clip-path: polygon(0 0, 95% 0, 100% 20%, 100% 100%, 5% 100%, 0 80%);
+}

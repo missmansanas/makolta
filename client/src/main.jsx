@@ -46,9 +46,9 @@ const Layout = () => {
 
   useEffect(() => {
      if (location === '/city') {
-      setBgImage('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg');
+      setBgImage('https://images.unsplash.com/photo-1562263588-35193ae8ecbb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     } else if (location === '/people') {
-      setBgImage('https://images.pexels.com/photos/8108362/pexels-photo-8108362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+      setBgImage('https://images.unsplash.com/photo-1502872364588-894d7d6ddfab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
     } else {
       setBgImage('https://images.pexels.com/photos/1202849/pexels-photo-1202849.jpeg');
     }
@@ -60,42 +60,20 @@ const Layout = () => {
         backgroundImage: 'url(' + bgImage + ')',
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
+        backgroundPositionY: '50%',
         transitionDuration: '300ms'
       }}>
-      {/* {isDesktop ? ( */}
+
         <UserContextProvider>
         <BleepsProvider {...bleepsSettings}>
 
-        <main className='h-full bg-black/50 backdrop-blur-sm p-6 overflow-y-auto box-border'>
-          <Nav />
+        <main
+          className='h-full bg-black/50 bg-grid backdrop-blur-sm p-6 overflow-y-auto box-border'>
           <Outlet/>
         </main>
-        {/* <Footer/> */}
         </BleepsProvider>
         </UserContextProvider>
-      {/* ) : (
-        <main className='h-full bg-black/50 backdrop-blur-md flex flex-col place-content-center p-8 lg:hidden'>
-          <div className="w-8 h-8 aspect-square rotate-45 border"></div>
-          <div className="w-8 h-8 aspect-square rotate-45 border"></div>
-          <div className='border mx-auto p-8 md:p-12 flex flex-col gap-5 text-lg'>
-          <p className='font-mono text-xl'>
-            Dearest Makoltazen,
-          </p>
-          <p>
-            The Makolta Web Portal is not optimized for mobile and tablet devices at this time. Please view from a desktop to enjoy Makoltaverse and check back again soon.
-          </p>
-          <p>
-            We're sorry for the inconvenience!
-          </p>
-          <p>
-            Signed, Makolta City-State Gov
-          </p>
-          </div>
 
-          <div className="w-8 h-8 aspect-square rotate-45 border self-end"></div>
-          <div className="w-8 h-8 aspect-square rotate-45 border self-end"></div>
-        </main>
-      )} */}
       
     </div>
   )

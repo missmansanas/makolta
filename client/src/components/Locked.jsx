@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom';
+import Nav from './Nav';
 
 const server = import.meta.env.VITE_SERVER
 
@@ -33,6 +34,8 @@ const Locked = () => {
   }
 
   return (
+    <>
+    <Nav/>
     <div className='flex flex-col w-max mx-auto place-content-center place-items-center h-max mt-12'>
       <p className='text-3xl font-mono text-center'>{JSON.stringify(userInfo) !== '{}' ? `Currently signed in as ${userInfo}` : 'Sign in to continue'}</p>
 
@@ -66,6 +69,7 @@ const Locked = () => {
         </button>
       </form>
     </div>
+    </>
   )
 }
 

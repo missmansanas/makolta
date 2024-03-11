@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import NewsCard from './NewsCard';
 import { Edit2 } from "react-feather";
+import Nav from './Nav';
 
 const server = import.meta.env.VITE_SERVER
 
@@ -20,6 +21,8 @@ export default function News() {
 
 
   return (
+    <>
+    <Nav/>
     <div className='py-8 grid lg:grid-cols-7 gap-12'>
       <div className='lg:col-span-2'>
         <h1 className='border-b font-techno pb-1 tracking-wider text-2xl'>Highlights</h1>
@@ -49,5 +52,6 @@ export default function News() {
 
     </div>
 
+    </>
   )
 }
