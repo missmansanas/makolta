@@ -1,7 +1,7 @@
 'use client'
 import { UserContext } from './context/UserContext'
 import { useContext, useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useBleeps } from "@arwes/react-bleeps";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
 
             <div className='flex flex-col gap-y-5 flex flex-col items-center text-center w-[95%] mx-auto p-3'>
               <h1 className="font-baybayin text-white/30 text-xl md:text-3xl lg:text-4xl tracking-widest">Ang Portal ng Ahensya</h1>
-              <h1 className="uppercase font-techno text-xl md:text-4xl">Welcome to the Agency Portal</h1>
+              <h1 className="border-b-2 border-pink-500/20 pb-4 uppercase font-techno text-xl md:text-4xl">Welcome to the Agency Portal</h1>
           
               <p className='tracking-wider md:text-justify'>
                 The contents of this portal are confidential, privileged and intended only for the person(s) to which it is entrusted by the Agency. Any review, retransmission, dissemination or other use of this material is strictly prohibited and punishable to varying degrees. By continuing to access the portal, you are subject to the Agency by-laws and applicable penalties.
@@ -33,7 +33,7 @@ function App() {
                 <div onClick={() => handleAgree()}>Agree & Continue</div>
               </div>
               <div className="hexagon-btn bg-violet-900/50 hover:bg-violet-900 hover:shadow-all hover:shadow-violet-500 duration-100 px-3 py-1 font-techno">
-                <NavLink to="/locked" onClick={() => bleeps.click?.play()}>Enter as Admin</NavLink>
+                <Link to="/locked" onClick={() => bleeps.click?.play()}>Enter as Admin</Link>
               </div>
               <p className={`${JSON.stringify(userInfo) !== "{}" ? 'text-xs' : 'hidden'}`}>You are currently signed in as {JSON.stringify(userInfo)}</p>
             </div>        
@@ -52,22 +52,22 @@ function App() {
           <div className='grid grid-cols-2 w-max mx-auto gap-4 rotate-45'>
             <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-3 uppercase font-mono text-xl'>
-                <NavLink to="/city" onClick={() => bleeps.click?.play()}>City</NavLink>
+                <Link to="/city" onClick={() => bleeps.click?.play()}>City</Link>
               </div>
             </div>
             <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-2 uppercase font-mono text-xl'>
-                <NavLink to="/people" onClick={() => bleeps.click?.play()}>People</NavLink>
+                <Link to="/people" onClick={() => bleeps.click?.play()}>People</Link>
               </div>
             </div>
             <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-3 uppercase font-mono text-xl'>
-                <NavLink to="/news" onClick={() => bleeps.click?.play()}>News</NavLink>
+                <Link to="/news" onClick={() => bleeps.click?.play()}>News</Link>
               </div>
             </div>
             <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-2 uppercase font-mono text-xl'>
-                <NavLink to="/locked" onClick={() => bleeps.click?.play()}>Login</NavLink>
+                <Link to="/locked" onClick={() => bleeps.click?.play()}>Login</Link>
               </div>
             </div>
           </div>
