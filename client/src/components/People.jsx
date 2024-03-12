@@ -80,6 +80,19 @@ export default function People() {
     }
   }
 
+  const getDetails = (id, detail) => {
+    if (id) {
+      const activeElement = posts.find(el => {
+        return el._id === id;
+      })
+      if (detail === "status") {
+        return `${activeElement.status ? activeElement.status : 'Under surveillance'}`;
+      } else if (detail === "threatLvl") {
+        return `${activeElement.threatLvl ? activeElement.threatLvl : 'Unknown'}`;
+      }
+    }
+  }
+
   return (
     <>
     <Nav/>
@@ -101,7 +114,7 @@ export default function People() {
       </div>
     ) : (
       <>
-        <div className='box-border h-max gap-8 flex flex-row overflow-x-auto sticky top-[0.1%]'>
+        <div className='box-border h-max gap-8 flex flex-row overflow-x-auto'>
           {posts.length > 0 && posts.map(post => (
               <CharacterCard
                 avatar={post.avatar ? post.avatar : 'https://raw.githubusercontent.com/Mikescher/CS_GO_Avatars/master/question%20mark.png'}
@@ -116,18 +129,30 @@ export default function People() {
 
 
           </div>
-          <div className="p-0.5 bg-blue-900/30 shadow-all shadow-pink-500/20 lg:w-3/4 lg:mx-auto">
+          <div className="p-0.5 bg-blue-900/30 shadow-all shadow-pink-500/20 lg:w-3/4 lg:mx-auto sticky top-[8px]">
 
-          <div className={`hexagon-xl px-6 bg-black/70 border border-white/50 h-max ${!activeIndex && 'hidden'} duration-300`}>
+          <div className={`hexagon-xl px-6 bg-white/10 border border-white/50 h-max ${!activeIndex && 'hidden'} duration-300`}>
 
           <div className='relative w-full'>
               <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>
             <h1 className='text-2xl px-6 bo py-3 font-techno'>{getName(activeIndex)} {editButton(activeIndex)}</h1>
           </div>
 
-            <div className='p-6 overflow-y-auto box-border max-h-[calc(100vh-400px)]'>
+            <div className='py-6 md:p-6 overflow-y-auto box-border max-h-full'>
               <p className='italic bg-blue-400/10 font-mono text-xl p-6 tracking-wider'>{getSummary(activeIndex)}</p>
-              <img src={getAvatar(activeIndex)} className='w-36 h-36 md:w-1/3 md:h-1/3 aspect-square object-cover rounded-full float-right border-b-2 border-blue-500/50 p-4 ml-3 -mr-4' />
+              <div className="flex flex-col items-center w-1/2 max-w-80 float-right border-2 border-blue-500/50 m-4 mr-0 shadow-all shadow-white/30 gap-2">
+                <img src={getAvatar(activeIndex)} className='aspect-square object-cover' />
+                <div className="self-stretch grid md:grid-cols-2 gap-x-4 gap-y-2 font-mono px-3 tracking-wider">
+                  <p className='font-bold'>Status</p>
+                  <p>{getDetails(activeIndex, 'status')}</p>
+
+                  <p className='font-bold'>Threat Level</p>
+                  <p>{getDetails(activeIndex, 'threatLvl')}</p>
+                  <p className='font-bold'>Subject ID</p>
+                  <p>{activeIndex && activeIndex.substring(0,8)}</p>
+
+                </div>
+              </div>
               <p className='text-xl tracking-wide whitespace-pre-line pt-6 pb-12'>{getContent(activeIndex)}</p>
             </div>
 

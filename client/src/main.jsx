@@ -5,8 +5,6 @@ import { createBrowserRouter, RouterProvider, Outlet, useLocation } from "react-
 import { BleepsProvider } from "@arwes/react-bleeps";
 import App from './App.jsx'
 import './index.css'
-import useMediaQuery from './hooks/useMediaQuery.jsx'
-import Nav from './components/Nav.jsx';
 import City from './components/City.jsx';
 import People from './components/People.jsx';
 import News from './components/News.jsx';
@@ -23,8 +21,6 @@ const Layout = () => {
   const [bgImage, setBgImage] = useState('https://images.pexels.com/photos/1202849/pexels-photo-1202849.jpeg')
 
   const location = useLocation().pathname;
-
-  const isDesktop = useMediaQuery('(min-width: 960px)');
 
   const bleepsSettings = {
     master: {

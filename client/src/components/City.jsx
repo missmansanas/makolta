@@ -87,7 +87,7 @@ export default function City() {
       </div>
     ) : (
       <>
-        <div className='box-border h-max gap-4 flex flex-row overflow-x-auto sticky top-[0.1%]'>
+        <div className='box-border h-max gap-4 flex flex-row overflow-x-auto'>
           {posts.length > 0 && posts.map(post => (
             <ElementCard
               bgImage={post.cover}
@@ -100,9 +100,9 @@ export default function City() {
           ))}
 
           </div>
-          <div className="p-0.5 bg-blue-900/30 shadow-all shadow-pink-500/20 lg:w-3/4 lg:mx-auto">
+          <div className="p-0.5 bg-blue-900/30 shadow-all shadow-pink-500/20 lg:w-3/4 lg:mx-auto sticky top-[8px]">
 
-          <div className={`hexagon-xl px-6 bg-black/70 border border-white/50 h-max ${!activeIndex && 'hidden'} duration-300`}>
+          <div className={`hexagon-xl px-6 bg-white/10 border border-white/50 h-max ${!activeIndex && 'hidden'} duration-300`}>
 
             <div className='relative w-full'>
               <div className="w-full h-1/2 border-b border-l-4 border-blue-500/50 absolute bottom-0 left-0"></div>

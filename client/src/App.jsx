@@ -16,7 +16,6 @@ function App() {
 
   return (
     <div className='flex flex-col min-h-[80vh] justify-center py-8'>
-      {/* <Symbol addClass='py-6'/> */}
       {!navMode ? (
         <div className="flex flex-col justify-center gap-8 md:w-[700px] place-content-center items-center mx-auto">
           <div className="bg-pink-900/50 p-0.5 shadow-all shadow-pink-500/20">
