@@ -11,26 +11,26 @@ const Update = require('./models/Update');
 const app = express();
 
 /* FOR LOCAL - COMMENT WHEN NOT IN USE */
-app.listen(4000, () => {
-  console.log("Listening...")
-});
+// app.listen(4000, () => {
+//   console.log("Listening...")
+// });
 
-app.use(cors(
-  {
-    credentials: true,
-    origin: "http://localhost:5173",
-    methods: ["POST", "GET", "PUT"]
-  }
-));
-
-/* FOR VERCEL DEPOYMENT */
 // app.use(cors(
 //   {
 //     credentials: true,
-//     origin: "https://makolta.vercel.app",
+//     origin: "http://localhost:5173",
 //     methods: ["POST", "GET", "PUT"]
 //   }
 // ));
+
+/* FOR VERCEL DEPOYMENT */
+app.use(cors(
+  {
+    credentials: true,
+    origin: "https://makolta.vercel.app",
+    methods: ["POST", "GET", "PUT"]
+  }
+));
 
 app.use(express.json());
 
@@ -39,15 +39,6 @@ db.connectDatabase()
     console.error('Failed to start server: ', error);
   })
 
-
-// app.get('/check-connection', async (req, res) => {
-//   try {
-//     await mongoose.connect(`mongodb+srv://paolanocom:${process.env.MONGO_PW}@cluster0.ufeyccl.mongodb.net/portal?retryWrites=true&w=majority`);
-//     res.send('MongoDB connection successful');
-//   } catch (error) {
-//     res.status(500).send('MongoDB connection failed');
-//   }
-// });
 
 app.get('/', (req, res) => {
   res.send('Ok')
