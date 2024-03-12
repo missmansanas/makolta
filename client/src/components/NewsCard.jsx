@@ -2,14 +2,15 @@ import React from 'react'
 
 const NewsCard = ({ title, content, timestamp }) => {
   return (
-    <div className='rounded rounded-md p-3 bg-black/70 backdrop-blur-xs'>
-    <h6 className='text-xs font-light tracking-widest'>Makolta City-State Gov posted {timestamp && 'on ' + timestamp}:</h6>
-    <p className='text-xl tracking-wide font-mono py-3'>
-      {title}
-    </p>
-    <p className={`${content ? 'tracking-wide font-mono': 'hidden'}`}>
-      {content}
-    </p>
+    <div className="bg-black/50 py-3 px-8">
+      <h6 className='font-mono text-sm font-light border-b border-white/30 uppercase'>{timestamp && 'on ' + timestamp}:</h6>
+      <p className='text-xl font-techno py-3'>
+        {title}
+      </p>
+      <p className={`${content ? 'tracking-wider text-sm font-light': 'hidden'}`}>
+        {content}
+      </p>
+
     </div>
   )
 }
