@@ -15,79 +15,35 @@ const Nav = () => {
   const bleeps = useBleeps();
   
   return (
-    <div className='flex flex-row items-center gap-2 md:gap-3 font-mono'>
+    <div className='flex flex-row justify-between items-center gap-2 md:gap-3 font-mono'>
       <p className=''><StarBorderOutlinedIcon/></p>
       <div className='md:border md:border-white/30 md:w-full md:h-0'></div>
-      {isMobile ? (
-
-        <div className='flex flex-row flex-wrap gap-3 text-xs z-50 min-w-max box-border text-white uppercase justify-between items-center'>
-          <NavLink
-            to='/'
-            className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
-            onClick={() => bleeps.click?.play()}
-            >
-            01. Home
-          </NavLink>
+        <div className='flex flex-row flex-wrap gap-3 md:gap-6 text-xs z-50 min-w-max box-border text-white uppercase justify-between items-center'>
           <NavLink
             to='/city'
             className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
             onClick={() => bleeps.click?.play()}
             >
-            02. City
+            01. City
           </NavLink>
           <NavLink
             to='/people'
             className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
             onClick={() => bleeps.click?.play()}
             >
-            03. People
+            02. People
           </NavLink>
           <NavLink
             to='/news'
             className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
             onClick={() => bleeps.click?.play()}>
-            04. News
+            03. News
           </NavLink>
           <NavLink to='/locked' className='py-3' onClick={() => bleeps.click?.play()}>
             {JSON.stringify(userInfo) !== "{}" ? <LockOpenOutlinedIcon/> : <LockOutlinedIcon/> }
           </NavLink>
         </div>
 
-      ) : (
-
-      <div className='flex min-w-max gap-9 box-border text-white justify-evenly uppercase px-9'>
-        <NavLink
-          to='/'
-          className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
-          onClick={() => bleeps.click?.play()}
-          >
-          01. Home
-        </NavLink>
-        <NavLink
-          to='/city'
-          className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
-          onClick={() => bleeps.click?.play()}
-          >
-          02. City
-        </NavLink>
-        <NavLink
-          to='/people'
-          className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
-          onClick={() => bleeps.click?.play()}
-          >
-          03. People
-        </NavLink>
-        <NavLink
-          to='/news'
-          className={({ isActive }) => isActive ? "border-b-2 py-3" : "py-3"}
-          onClick={() => bleeps.click?.play()}>
-          04. News
-        </NavLink>
-        <NavLink to='/locked' className='py-3' onClick={() => bleeps.click?.play()}>
-          {JSON.stringify(userInfo) !== "{}" ? <LockOpenOutlinedIcon/> : <LockOutlinedIcon/> }
-        </NavLink>
-      </div>
-      )}
 
     </div>
   )

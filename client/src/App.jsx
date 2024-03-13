@@ -3,6 +3,7 @@ import { UserContext } from './context/UserContext'
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useBleeps } from "@arwes/react-bleeps";
+import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
   const [navMode, setNavMode] = useState(false);
@@ -14,8 +15,35 @@ function App() {
     bleeps.click?.play();
   }
 
+  const parent = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+  }
+
+  const child = {
+    visible: {
+      opacity: 1,
+    },
+    hidden: {
+      opacity: 0,
+    },
+  }
+
+
   return (
     <div className='flex flex-col min-h-[80vh] justify-center py-8'>
+
       {!navMode ? (
         <div className="flex flex-col justify-center gap-8 md:w-[700px] place-content-center items-center mx-auto">
           <div className="bg-pink-900/50 p-0.5 shadow-all shadow-pink-500/20">
@@ -43,37 +71,51 @@ function App() {
 
       ) : (
         <>
+        <AnimatePresence>
         <div className="pb-20">
           <h1 className="font-baybayin text-white/30 text-xl md:text-3xl lg:text-4xl tracking-widest text-center">Piliin ang Destinasyon</h1>
           <h1 className="uppercase font-techno text-xl md:text-4xl text-center">Select Your Destination</h1>
         </div>
-
-          <div className='grid grid-cols-2 w-max mx-auto gap-4 rotate-45'>
-            <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
+          <motion.div
+            className='grid grid-cols-2 w-max mx-auto gap-4 rotate-45'
+            initial="hidden"
+            animate="visible"
+            variants={parent}
+            
+            >
+            <motion.div
+              variants={child}
+              className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-3 uppercase font-mono text-xl'>
                 <Link to="/city" onClick={() => bleeps.click?.play()}>City</Link>
               </div>
-            </div>
-            <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
+            </motion.div>
+            <motion.div
+              variants={child}
+              className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-2 uppercase font-mono text-xl'>
                 <Link to="/people" onClick={() => bleeps.click?.play()}>People</Link>
               </div>
-            </div>
-            <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
+            </motion.div>
+            <motion.div
+              variants={child}
+              className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-3 uppercase font-mono text-xl'>
                 <Link to="/news" onClick={() => bleeps.click?.play()}>News</Link>
               </div>
-            </div>
-            <div className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
+            </motion.div>
+            <motion.div
+              variants={child}
+              className="min-w-28 w-max aspect-square border hover:shadow-all hover:shadow-pink-500/50 hover:border-pink-900/50">
               <div className='-rotate-45 pt-8 pl-2 uppercase font-mono text-xl'>
                 <Link to="/locked" onClick={() => bleeps.click?.play()}>Login</Link>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
+        </AnimatePresence>
         </>
       )}
-
     </div>
   )
 }

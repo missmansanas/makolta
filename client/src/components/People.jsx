@@ -140,15 +140,16 @@ export default function People() {
 
             <div className='py-6 md:p-6 overflow-y-auto box-border max-h-full'>
               <p className='italic bg-blue-400/10 font-mono text-xl p-6 tracking-wider'>{getSummary(activeIndex)}</p>
-              <div className="flex flex-col items-center w-1/2 max-w-80 float-right border-2 border-blue-500/50 m-4 mr-0 shadow-all shadow-white/30 gap-2">
+              <div className="flex flex-col items-center max-w-80 border-2 border-blue-500/50
+                md:w-1/2 md:float-right m-4 md:mr-0 shadow-all shadow-white/30 gap-2">
                 <img src={getAvatar(activeIndex)} className='aspect-square object-cover' />
                 <div className="self-stretch grid md:grid-cols-2 gap-x-4 gap-y-2 font-mono px-3 tracking-wider">
-                  <p className='font-bold'>Status</p>
+                  <p className='font-bold'>Status:</p>
                   <p>{getDetails(activeIndex, 'status')}</p>
 
-                  <p className='font-bold'>Threat Level</p>
+                  <p className='font-bold'>Threat Level:</p>
                   <p>{getDetails(activeIndex, 'threatLvl')}</p>
-                  <p className='font-bold'>Subject ID</p>
+                  <p className='font-bold'>Subject ID:</p>
                   <p>{activeIndex && activeIndex.substring(0,8)}</p>
 
                 </div>
