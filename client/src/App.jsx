@@ -45,8 +45,41 @@ function App() {
     <div className='flex flex-col min-h-[80vh] justify-center py-8'>
 
       {!navMode ? (
+        <AnimatePresence>
         <div className="flex flex-col justify-center gap-8 md:w-[700px] place-content-center items-center mx-auto">
-          <div className="bg-pink-900/50 p-0.5 shadow-all shadow-pink-500/20">
+          <motion.div
+            className="bg-pink-900/50 p-0.5 shadow-all shadow-pink-500/20"
+            initial={{
+              height: 0,
+              opacity: 0,
+            }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+              transition: {
+                height: {
+                  duration: 1,
+                },
+                opacity: {
+                  duration: 0.25,
+                  delay: 0.25
+                },
+              }
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: {
+                height: {
+                  duration: 1,
+                },
+                opacity: {
+                  duration: 0.25
+                }
+              }
+            }}
+            key="main"
+            >
             <div className='bg-black/70 p-3 hexagon-xl'>
 
             <div className='flex flex-col gap-y-5 flex flex-col items-center text-center w-[95%] mx-auto p-3'>
@@ -65,9 +98,10 @@ function App() {
               <p className={`${JSON.stringify(userInfo) !== "{}" ? 'text-xs' : 'hidden'}`}>You are currently signed in as {JSON.stringify(userInfo)}</p>
             </div>        
             </div>
-          </div>
+          </motion.div>
 
         </div>
+        </AnimatePresence>
 
       ) : (
         <>
